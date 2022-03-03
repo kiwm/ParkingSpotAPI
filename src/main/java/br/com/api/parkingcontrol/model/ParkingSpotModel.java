@@ -1,5 +1,7 @@
 package br.com.api.parkingcontrol.model;
 import lombok.*;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -10,6 +12,8 @@ public class ParkingSpotModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "uuid", columnDefinition = "char(36)")
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
 
     @Column(unique = true)

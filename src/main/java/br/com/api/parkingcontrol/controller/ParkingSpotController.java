@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/parking-spot")
@@ -38,5 +40,15 @@ public class ParkingSpotController {
     @GetMapping
     public ResponseEntity<List<ParkingSpotModel>> getAllParkingSpots() {
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotServiceImp.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneParkingSpot(@PathVariable UUID id) {
+        Optional<ParkingSpotModel> parkingSpotModelOptional = parkingSpotServiceImp.findById(id);
+        System.out.println(id);
+        if(parkingSpotModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(parkingSpotModelOptional.get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking spot not found!");
     }
 }
