@@ -1,7 +1,6 @@
 package br.com.api.parkingcontrol.service;
 
 import br.com.api.parkingcontrol.model.ParkingSpotModel;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,4 +14,6 @@ public interface ParkingSpotService {
     List<ParkingSpotModel> findAll();
 
     Optional<ParkingSpotModel> findById(UUID id);
+
+    void delete(ParkingSpotModel parkingSpotModel);
 }

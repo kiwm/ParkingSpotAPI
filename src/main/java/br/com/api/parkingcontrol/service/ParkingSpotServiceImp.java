@@ -28,9 +28,15 @@ public class ParkingSpotServiceImp implements ParkingSpotService {
         return parkingSpotRepository.findAll();
     }
 
-
+    @Override
     public Optional<ParkingSpotModel> findById(UUID id) {
         return parkingSpotRepository.findById(id);
+    }
+
+    @Transactional
+    @Override
+    public void delete(ParkingSpotModel parkingSpotModel) {
+        parkingSpotRepository.delete(parkingSpotModel);
     }
 
 
@@ -42,5 +48,4 @@ public class ParkingSpotServiceImp implements ParkingSpotService {
     public boolean existsByParkingSpotNumber(String parkingSpotNumber) {
         return parkingSpotRepository.existsByParkingSpotNumber(parkingSpotNumber);
     }
-
 }
